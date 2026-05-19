@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 import { useRouter, useParams } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "../../../api/src/db/client";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -131,7 +131,7 @@ export default function SahiDawaHome() {
 
                         <button
                             onClick={() => handleNavigation("health")}
-                            className="flex items-center gap-2 rounded-full bg-linear-to-r from-blue-500 to-purple-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
                             aria-label="Open AI Health Assistant"
                         >
                             <MessageCircle size={16} />
@@ -147,7 +147,7 @@ export default function SahiDawaHome() {
             {/* ── Main ── */}
             <main className="container mx-auto max-w-6xl px-4 pt-8 pb-24 md:pb-12">
                 {/* Hero */}
-                <div className="space-y-6 py-12 text-center md:py-20">
+                <div className="mt-10 flex flex-col items-center space-y-6 py-12 text-center md:py-20">
                     <div className="animate-in fade-in slide-in-from-bottom-4 inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700 duration-700">
                         <span className="relative flex h-2 w-2">
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
@@ -169,7 +169,7 @@ export default function SahiDawaHome() {
                     className="group relative flex w-full items-center justify-between overflow-hidden rounded-3xl border border-emerald-500 bg-emerald-600 p-7 text-left text-white shadow-xl shadow-emerald-600/20 transition-all hover:shadow-emerald-600/40 active:scale-[0.99] md:p-8"
                     aria-label="Scan medicine"
                 >
-                    <div className="absolute inset-0 z-0 bg-linear-to-tr from-emerald-700 to-emerald-500"></div>
+                    <div className="absolute inset-0 z-0 bg-gradient-to-tr from-emerald-700 to-emerald-500"></div>
                     <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-3xl"></div>
                     <div className="relative z-10 flex items-center gap-6">
                         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white/20 shadow-inner backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 md:h-20 md:w-20">
@@ -271,10 +271,10 @@ export default function SahiDawaHome() {
                 </div>
 
                 {/* ── AI Health Assistant CTA Banner ── */}
-                <div className="mt-6 rounded-3xl border border-blue-100 bg-linear-to-r from-blue-50 to-purple-50 p-6">
+                <div className="mt-6 rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 to-purple-50 p-6">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-linear-to-r from-blue-500 to-purple-500 shadow-lg">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg">
                                 <MessageCircle size={28} className="text-white" />
                             </div>
                             <div>
@@ -288,7 +288,7 @@ export default function SahiDawaHome() {
                         </div>
                         <button
                             onClick={() => handleNavigation("health")}
-                            className="rounded-xl bg-linear-to-r from-blue-500 to-purple-500 px-6 py-2.5 font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                            className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2.5 font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
                         >
                             Chat Now →
                         </button>
