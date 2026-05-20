@@ -2,7 +2,12 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { VoiceAnimationToggle } from "../app/[locale]/voice/VoiceAnimationToggle";
 import { VoiceListeningPanel } from "../app/[locale]/voice/VoicePanels";
-import { resolveVoiceAnimationPreference, stopMediaStream } from "../app/[locale]/voice/lib/audio";
+import {
+    resolveVoiceAnimationPreference,
+    stopMediaQueryChangeListener,
+    stopMediaStream,
+    subscribeToMediaQueryChange,
+} from "../app/[locale]/voice/lib/audio";
 
 describe("voice audio visualizer helpers", () => {
     it("defaults animations off when the user prefers reduced motion", () => {
@@ -43,6 +48,23 @@ describe("voice audio visualizer helpers", () => {
         expect(firstStop).toHaveBeenCalledTimes(1);
         expect(secondStop).toHaveBeenCalledTimes(1);
     });
+
+    it("falls back to legacy media query listeners when EventTarget methods are unavailable", () => {
+        const listener = jest.fn();
+        const addListener = jest.fn();
+        const removeListener = jest.fn();
+        const legacyQuery = {
+            matches: false,
+            addListener,
+            removeListener,
+        };
+
+        const subscription = subscribeToMediaQueryChange(legacyQuery, listener);
+        stopMediaQueryChangeListener(subscription);
+
+        expect(addListener).toHaveBeenCalledWith(listener);
+        expect(removeListener).toHaveBeenCalledWith(listener);
+    });
 });
 
 describe("VoiceListeningPanel visualizer fallback", () => {
@@ -57,6 +79,8 @@ describe("VoiceListeningPanel visualizer fallback", () => {
                 animationsEnabled={false}
                 visualizerLabel="Microphone waveform"
                 volumeLabel="Volume level"
+                liveVolumeLabel="Live"
+                stillVolumeLabel="Still"
                 visualizerUnavailableLabel="Live waveform unavailable"
             />
         );
@@ -66,6 +90,27 @@ describe("VoiceListeningPanel visualizer fallback", () => {
         expect(markup).toContain("Live waveform unavailable");
         expect(markup).toContain("Start speaking about your symptoms...");
     });
+
+    it("uses localized visualizer state labels", () => {
+        const markup = renderToStaticMarkup(
+            <VoiceListeningPanel
+                transcript="அறிகுறிகளை சொல்லுங்கள்"
+                statusLabel="கேட்கிறது"
+                stream={null}
+                isListening={true}
+                isFading={false}
+                animationsEnabled={false}
+                visualizerLabel="மைக்ரோஃபோன் அலைவடிவம்"
+                volumeLabel="ஒலி அளவு"
+                liveVolumeLabel="நேரடி"
+                stillVolumeLabel="நிலையானது"
+                visualizerUnavailableLabel="நேரடி அலைவடிவம் இல்லை"
+            />
+        );
+
+        expect(markup).toContain("நிலையானது");
+        expect(markup).not.toContain("Still");
+    });
 });
 
 describe("VoiceAnimationToggle", () => {
@@ -73,6 +118,8 @@ describe("VoiceAnimationToggle", () => {
         const markup = renderToStaticMarkup(
             <VoiceAnimationToggle
                 label="Voice animations"
+                liveLabel="Live waveform"
+                reducedMotionLabel="Reduced motion"
                 enabled={true}
                 onToggle={() => undefined}
             />
@@ -83,5 +130,21 @@ describe("VoiceAnimationToggle", () => {
         expect(markup).toContain("Voice animations");
         expect(markup).toContain("bg-emerald-600");
         expect(markup).toContain("shadow-emerald-500/25");
+    });
+
+    it("renders localized state copy instead of fixed English labels", () => {
+        const markup = renderToStaticMarkup(
+            <VoiceAnimationToggle
+                label="குரல் அசைவுகள்"
+                liveLabel="நேரடி அலைவடிவம்"
+                reducedMotionLabel="குறைந்த அசைவு"
+                enabled={false}
+                onToggle={() => undefined}
+            />
+        );
+
+        expect(markup).toContain("குரல் அசைவுகள்");
+        expect(markup).toContain("குறைந்த அசைவு");
+        expect(markup).not.toContain("Reduced motion");
     });
 });

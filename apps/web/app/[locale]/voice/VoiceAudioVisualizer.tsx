@@ -13,6 +13,8 @@ export function VoiceAudioVisualizer({
     animationsEnabled,
     visualizerLabel,
     volumeLabel,
+    liveVolumeLabel,
+    stillVolumeLabel,
     visualizerUnavailableLabel,
 }: {
     stream: MediaStream | null;
@@ -21,6 +23,8 @@ export function VoiceAudioVisualizer({
     animationsEnabled: boolean;
     visualizerLabel: string;
     volumeLabel: string;
+    liveVolumeLabel: string;
+    stillVolumeLabel: string;
     visualizerUnavailableLabel: string;
 }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -219,7 +223,9 @@ export function VoiceAudioVisualizer({
             <div className="mt-3 w-full max-w-[13rem]">
                 <div className="flex items-center justify-between text-[10px] font-bold tracking-widest text-emerald-700 uppercase">
                     <span>{volumeLabel}</span>
-                    <span aria-hidden="true">{animationsEnabled ? "Live" : "Still"}</span>
+                    <span aria-hidden="true">
+                        {animationsEnabled ? liveVolumeLabel : stillVolumeLabel}
+                    </span>
                 </div>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-emerald-100">
                     <div

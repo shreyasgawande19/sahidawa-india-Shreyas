@@ -4,10 +4,14 @@ import { Activity, Sparkles } from "lucide-react";
 
 export function VoiceAnimationToggle({
     label,
+    liveLabel,
+    reducedMotionLabel,
     enabled,
     onToggle,
 }: {
     label: string;
+    liveLabel: string;
+    reducedMotionLabel: string;
     enabled: boolean;
     onToggle: (enabled: boolean) => void;
 }) {
@@ -39,7 +43,7 @@ export function VoiceAnimationToggle({
                             }`}
                             aria-hidden="true"
                         >
-                            {enabled ? "Live waveform" : "Reduced motion"}
+                            {enabled ? liveLabel : reducedMotionLabel}
                         </span>
                     </span>
                 </span>

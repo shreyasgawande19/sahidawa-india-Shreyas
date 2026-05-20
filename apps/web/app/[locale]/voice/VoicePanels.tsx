@@ -84,6 +84,8 @@ export function VoiceListeningPanel({
     animationsEnabled,
     visualizerLabel,
     volumeLabel,
+    liveVolumeLabel,
+    stillVolumeLabel,
     visualizerUnavailableLabel,
 }: {
     transcript: string;
@@ -94,6 +96,8 @@ export function VoiceListeningPanel({
     animationsEnabled: boolean;
     visualizerLabel: string;
     volumeLabel: string;
+    liveVolumeLabel: string;
+    stillVolumeLabel: string;
     visualizerUnavailableLabel: string;
 }) {
     return (
@@ -109,6 +113,8 @@ export function VoiceListeningPanel({
                 animationsEnabled={animationsEnabled}
                 visualizerLabel={visualizerLabel}
                 volumeLabel={volumeLabel}
+                liveVolumeLabel={liveVolumeLabel}
+                stillVolumeLabel={stillVolumeLabel}
                 visualizerUnavailableLabel={visualizerUnavailableLabel}
             />
             <p className="text-center text-2xl font-bold text-slate-800 italic">

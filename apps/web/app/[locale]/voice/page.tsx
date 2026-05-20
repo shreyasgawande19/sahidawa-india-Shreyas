@@ -31,7 +31,9 @@ import {
 import { VoiceAnimationToggle } from "./VoiceAnimationToggle";
 import {
     resolveVoiceAnimationPreference,
+    stopMediaQueryChangeListener,
     stopMediaStream,
+    subscribeToMediaQueryChange,
     type StoredVoiceAnimationPreference,
 } from "./lib/audio";
 import type { VoiceErrorState, VoiceStep, VoiceTriageResult } from "./types";
@@ -188,10 +190,10 @@ export default function VoiceTriagePage() {
         }
 
         applyMotionPreference();
-        motionQuery.addEventListener("change", applyMotionPreference);
+        const subscription = subscribeToMediaQueryChange(motionQuery, applyMotionPreference);
 
         return () => {
-            motionQuery.removeEventListener("change", applyMotionPreference);
+            stopMediaQueryChangeListener(subscription);
         };
     }, []);
 
@@ -655,6 +657,8 @@ export default function VoiceTriagePage() {
                     </select>
                     <VoiceAnimationToggle
                         label={t("animation_toggle_label")}
+                        liveLabel={t("animation_live_label")}
+                        reducedMotionLabel={t("animation_reduced_motion_label")}
                         enabled={animationsEnabled}
                         onToggle={(nextPreference) => {
                             setAnimationsEnabled(nextPreference);
@@ -691,6 +695,8 @@ export default function VoiceTriagePage() {
                         animationsEnabled={animationsEnabled}
                         visualizerLabel={t("visualizer_label")}
                         volumeLabel={t("volume_label")}
+                        liveVolumeLabel={t("volume_live_label")}
+                        stillVolumeLabel={t("volume_still_label")}
                         visualizerUnavailableLabel={t("visualizer_unavailable")}
                     />
                 )}
