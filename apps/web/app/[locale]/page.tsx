@@ -194,21 +194,25 @@ export default function SahiDawaHome() {
                 </button>
 
                 {/* ── Secondary Action Cards ── */}
-                <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
                     {/* Upload Photo */}
                     <button
                         onClick={() => handleNavigation("scan")}
-                        className="group flex w-full items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left transition-all hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-100/50 active:scale-95"
+                        className="group flex min-h-[170px] w-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-6 text-left shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 active:scale-[0.99]"
                         aria-label="Upload photo"
                     >
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 transition-colors duration-300 group-hover:bg-emerald-500 group-hover:text-white">
-                            <Globe size={28} strokeWidth={2.5} />
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-white/60 transition-colors duration-300 ring-inset group-hover:bg-emerald-500 group-hover:text-white">
+                                <Camera size={28} strokeWidth={2.5} />
+                            </div>
+                            <ChevronRight className="mt-1 h-5 w-5 text-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:text-emerald-400" />
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold text-slate-800">
+
+                        <div className="pt-4">
+                            <h3 className="text-lg font-bold tracking-tight text-slate-800">
                                 {tHome("upload_photo")}
                             </h3>
-                            <p className="mt-0.5 text-sm leading-snug font-medium text-slate-500">
+                            <p className="mt-1 text-sm leading-snug font-medium text-slate-500">
                                 {tHome("upload_subtitle")}
                             </p>
                         </div>
@@ -217,17 +221,21 @@ export default function SahiDawaHome() {
                     {/* Voice Triage */}
                     <button
                         onClick={() => handleNavigation("voice")}
-                        className="group flex w-full items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left transition-all hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 active:scale-95"
+                        className="group flex min-h-[170px] w-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-6 text-left shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/50 active:scale-[0.99]"
                         aria-label="Voice triage"
                     >
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-colors duration-300 group-hover:bg-blue-500 group-hover:text-white">
-                            <Mic size={28} strokeWidth={2.5} />
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-white/60 transition-colors duration-300 ring-inset group-hover:bg-blue-500 group-hover:text-white">
+                                <Mic size={28} strokeWidth={2.5} />
+                            </div>
+                            <ChevronRight className="mt-1 h-5 w-5 text-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-400" />
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold text-slate-800">
+
+                        <div className="pt-4">
+                            <h3 className="text-lg font-bold tracking-tight text-slate-800">
                                 {tHome("voice_triage")}
                             </h3>
-                            <p className="mt-0.5 text-sm leading-snug font-medium text-slate-500">
+                            <p className="mt-1 text-sm leading-snug font-medium text-slate-500">
                                 {tHome("voice_subtitle")}
                             </p>
                         </div>
@@ -236,17 +244,21 @@ export default function SahiDawaHome() {
                     {/* Pharmacy Map */}
                     <button
                         onClick={() => handleNavigation("map")}
-                        className="group flex w-full items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left transition-all hover:border-amber-200 hover:shadow-lg hover:shadow-amber-100/50 active:scale-95"
+                        className="group flex min-h-[170px] w-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-6 text-left shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-100/50 active:scale-[0.99]"
                         aria-label="Pharmacy map"
                     >
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white">
-                            <MapPin size={28} strokeWidth={2.5} />
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 ring-1 ring-white/60 transition-colors duration-300 ring-inset group-hover:bg-amber-500 group-hover:text-white">
+                                <MapPin size={28} strokeWidth={2.5} />
+                            </div>
+                            <ChevronRight className="mt-1 h-5 w-5 text-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:text-amber-400" />
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold text-slate-800">
+
+                        <div className="pt-4">
+                            <h3 className="text-lg font-bold tracking-tight text-slate-800">
                                 {tHome("pharmacy_map")}
                             </h3>
-                            <p className="mt-0.5 text-sm leading-snug font-medium text-slate-500">
+                            <p className="mt-1 text-sm leading-snug font-medium text-slate-500">
                                 {tHome("pharmacy_subtitle")}
                             </p>
                         </div>
@@ -255,15 +267,21 @@ export default function SahiDawaHome() {
                     {/* Report Fake Medicine */}
                     <button
                         onClick={() => handleNavigation("report")}
-                        className="group flex w-full items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left transition-all hover:border-red-200 hover:shadow-lg hover:shadow-red-100/50 active:scale-95"
+                        className="group flex min-h-[170px] w-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-6 text-left shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-xl hover:shadow-red-100/50 active:scale-[0.99]"
                         aria-label="Report fake medicine"
                     >
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-600 transition-colors duration-300 group-hover:bg-red-500 group-hover:text-white">
-                            <AlertTriangle size={28} strokeWidth={2.5} />
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-600 ring-1 ring-white/60 transition-colors duration-300 ring-inset group-hover:bg-red-500 group-hover:text-white">
+                                <AlertTriangle size={28} strokeWidth={2.5} />
+                            </div>
+                            <ChevronRight className="mt-1 h-5 w-5 text-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:text-red-400" />
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold text-slate-800">Report Fake</h3>
-                            <p className="mt-0.5 text-sm leading-snug font-medium text-slate-500">
+
+                        <div className="pt-4">
+                            <h3 className="text-lg font-bold tracking-tight text-slate-800">
+                                Report Fake
+                            </h3>
+                            <p className="mt-1 text-sm leading-snug font-medium text-slate-500">
                                 Report suspicious medicine
                             </p>
                         </div>
