@@ -79,6 +79,7 @@ export function VoiceIntroPanel({
 export function VoiceListeningPanel({
     transcript,
     statusLabel,
+    helperLabel,
     stream,
     isListening,
     isFading,
@@ -91,6 +92,7 @@ export function VoiceListeningPanel({
 }: {
     transcript: string;
     statusLabel: string;
+    helperLabel?: string;
     stream: MediaStream | null;
     isListening: boolean;
     isFading: boolean;
@@ -124,6 +126,9 @@ export function VoiceListeningPanel({
             <p className="text-sm font-bold tracking-widest text-emerald-600 uppercase">
                 {statusLabel}
             </p>
+            {helperLabel ? (
+                <p className="text-center text-sm font-medium text-slate-500">{helperLabel}</p>
+            ) : null}
         </div>
     );
 }
@@ -267,14 +272,22 @@ export function VoiceErrorPanel({
     onRetry: () => void;
 }) {
     return (
-        <div className="animate-in fade-in slide-in-from-bottom-8 w-full max-w-md rounded-[2.5rem] border border-red-100 bg-white p-8 shadow-xl duration-500 motion-reduce:animate-none">
+        <div
+            className="animate-in fade-in slide-in-from-bottom-8 w-full max-w-md rounded-[2.5rem] border border-red-100 bg-white p-8 shadow-xl duration-500 motion-reduce:animate-none"
+            aria-describedby="voice-error-message"
+        >
             <div className="mb-6 flex items-start gap-3">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-600">
                     <AlertTriangle size={24} aria-hidden="true" />
                 </div>
                 <div>
                     <h2 className="font-black text-slate-900">{error.title}</h2>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{error.message}</p>
+                    <p
+                        id="voice-error-message"
+                        className="mt-2 text-sm leading-relaxed text-slate-600"
+                    >
+                        {error.message}
+                    </p>
                 </div>
             </div>
 

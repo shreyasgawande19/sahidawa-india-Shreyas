@@ -70,6 +70,8 @@ describe("Voice Triage accessibility semantics", () => {
         );
 
         expect(markup).toContain("motion-reduce:animate-none");
+        expect(markup).toContain('aria-describedby="voice-error-message"');
+        expect(markup).toContain('id="voice-error-message"');
         expect(markup).toContain("focus-visible:outline-[3px]");
         expect(markup).toContain("focus-visible:outline-emerald-600");
         expect(markup).toContain("focus-visible:ring-[3px]");
